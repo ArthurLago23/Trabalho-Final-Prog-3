@@ -4,7 +4,7 @@
     "port": 5432,
     "username": "postgres",
     "password": "postgres",
-    "database": "db_cs_ts_orm_api_2023",
+    "database": "prog3_farmacia",
     "synchronize": true,
     "logging": false,
     "entities": [
