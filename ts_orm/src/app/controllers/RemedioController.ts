@@ -57,9 +57,9 @@ class RemedioController {
     async find(req: Request, res: Response){
     
         const repository = getRepository(Remedio);
-        const nome = req.params.nome;
+        const id = req.params.id;
 
-        const j = await repository.findOne({where : {"nome" : nome}});
+        const j = await repository.findOne({where : {"id" : id}});
 
         if(j){
             return res.json(j)

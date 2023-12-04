@@ -24,6 +24,11 @@ router.post('/logincliente', ClienteController.login);
 router.get('/cliente/:cpf', ClienteController.find);
 router.put('/cliente/update', ClienteController.update);
 
+router.get('/listClientes', ClienteController.list);
+router.post('/addCliente', ClienteController.store);
+router.put('/updatecliente/:cpf', ClienteController.update);
+router.delete('/deletecliente/:cpf', ClienteController.delete);
+
 //FUNCIONARIO
 router.get('/funcionario/list', FuncionarioController.list);
 router.post('/funcionario/store', FuncionarioController.store);
@@ -32,12 +37,23 @@ router.post('/loginfuncionario', FuncionarioController.login);
 router.get('/funcionario/:cpf', FuncionarioController.find);    
 router.put('/funcionario/update', FuncionarioController.update);
 
+router.get('/listFuncionarios', FuncionarioController.list);
+router.post('/addFuncionario', FuncionarioController.store);
+router.put('/updatefuncionario/:cpf', FuncionarioController.update);
+router.delete('/deletefuncionario/:cpf', FuncionarioController.delete);
+
+
 //REMEDIO
 router.get('/remedio/list', RemedioController.list);
 router.post('/remedio/store', RemedioController.store);
 router.delete('/remedio/delete/:id', RemedioController.delete)
-router.get('/remedio/:nome', RemedioController.find);
+router.get('/remedio/:id', RemedioController.find);
 router.put('/remedio/update', RemedioController.update);
+
+router.get('/listRemedios', RemedioController.list);
+router.post('/addRemedio', RemedioController.store);
+router.put('/updateremedio/:id', RemedioController.update);
+router.delete('/deleteremedio/:id', RemedioController.delete);
 
 //COMPRA
 router.get('/compra/list', CompraController.list);
@@ -45,5 +61,10 @@ router.post('/compra/store', CompraController.store);
 router.delete('/compra/delete/:id', CompraController.delete)
 router.get('/compra/:id', CompraController.find);
 router.put('/compra/update', CompraController.update);
+
+router.get('/listCompras', CompraController.list);
+router.post('/addCompra', CompraController.store);
+router.put('/updatecompra/:id', CompraController.update);
+router.delete('/deletecompra/:id', CompraController.delete);
 export default router;
 

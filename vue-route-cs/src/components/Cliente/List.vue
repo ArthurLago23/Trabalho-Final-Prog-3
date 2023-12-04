@@ -3,7 +3,7 @@
      
 
         <div class="col-md-6">
-            <h4>Listagem de Funcionarios</h4>
+            <h4>Listagem de Clientes</h4>
             <table class="table table-striped" >
                 <tr>
                     <th scope="col">Nome</th>
@@ -14,13 +14,13 @@
                     <th scope="col">Remover</th>
                 </tr>                     
                 <tbody>
-                    <tr v-for="(f, indice) in funcionarios" :key ="f.cpf" :class="{ active: indice == currentIndex }">
-                            <td>{{f.nome}}</td>
-                            <td>{{f.data_de_cadastro | formataData}}</td>
-                            <td>{{f.telefone}}</td>
-                            <td>{{f.endereco}}</td>          
-                            <td><button v-on:click="setCurrentFuncionario(f, indice)" class="btn" type="button">Alterar</button></td>
-                            <td><button v-on:click="remFuncionario(f, indice)" class="btn" type="button">Remover</button></td>
+                    <tr v-for="(c, indice) in clientes" :key ="c.cpf" :class="{ active: indice == currentIndex }">
+                            <td>{{c.nome}}</td>
+                            <td>{{c.data_de_cadastro | formataData}}</td>
+                            <td>{{c.telefone}}</td>
+                            <td>{{c.endereco}}</td>          
+                            <td><button v-on:click="setCurrentCliente(c, indice)" class="btn" type="button">Alterar</button></td>
+                            <td><button v-on:click="remCliente(c, indice)" class="btn" type="button">Remover</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -28,25 +28,25 @@
         </div>
 
         <div class="col-md-6">
-            <div v-if="currentFuncionario">
-                    <h4>Funcionario</h4>
+            <div v-if="currentCliente">
+                    <h4>Cliente</h4>
                     <div>
-                    <label><strong>Nome:</strong></label> {{ currentFuncionario.nome }}
+                    <label><strong>Nome:</strong></label> {{ currentCliente.nome }}
                     </div>
                     <div>
-                    <label><strong>Cpf:</strong></label> {{ currentFuncionario.cpf }}
+                    <label><strong>Cpf:</strong></label> {{ currentCliente.cpf }}
                     </div>
 
                     <a class="badge badge-warning"
-                    :href="'/updatefuncionario/' + currentFuncionario.cpf"
+                    :href="'/updatecliente/' + currentCliente.cpf"
                     >
                     Edit
                     </a>
             </div>
             <div v-else>
                 <br />
-                <p>Adicione um Funcionário</p>
-                <router-link to="/addFuncionario" class="badge badge-success">Novo</router-link>                
+                <p>Adicione um Cliente</p>
+                <router-link to="/addCliente" class="badge badge-success">Novo</router-link>                
 
             </div>
         </div>
@@ -56,42 +56,42 @@
  </template>
  <script>
  
-     import FuncionarioDataService from '../../services/FuncionarioDataService'     
+     import ClienteDataService from '../../services/ClienteDataService'     
  
      export default{
-      name:'listFuncionarios',
+      name:'listClientes',
       data() {
              return {
-                 funcionarios: [],
-                 currentFuncionario: null,
+                 clientes: [],
+                 currentCliente: null,
                  currentIndex: -1
              }
          },
          methods: {
-            listarFuncionarios(){
+            listarClientes(){
 
                 
-                FuncionarioDataService.list().then(response =>{
+                ClienteDataService.list().then(response =>{
 
-                    console.log("Retorno do seviço authenticateFuncionario", response.status);
+                    console.log("Retorno do seviço authenticateCliente", response.status);
 
-                   this.funcionarios = response.data;
+                   this.clientes = response.data;
 
                 }).catch(response => {
 
                     // error callback
-                    alert('Não conectou no serviço listfuncionario');
+                    alert('Não conectou no serviço listcliente');
                     console.log(response);
                 });
             },
-            setCurrentFuncionario(funcionario, index){
+            setCurrentCliente(cliente, index){
 
-                this.currentFuncionario = funcionario;
+                this.currentCliente = cliente;
                 this.currentIndex = index;
             },
-            remFuncionario(funcionario, index){
+            remCliente(cliente, index){
 
-                FuncionarioDataService.delete(funcionario.cpf)
+                ClienteDataService.delete(cliente.cpf)
                 .then(response => {
                     console.log(response.data);
                     this.refreshList();
@@ -102,14 +102,14 @@
 
             },
             refreshList() {
-                this.listarFuncionarios();
+                this.listarClientes();
                 this.currentTutorial = null;
                 this.currentIndex = -1;
             }
             
          },
          mounted() {
-            this.listarFuncionarios();
+            this.listarClientes();
          }
  
      }

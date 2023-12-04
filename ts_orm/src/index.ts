@@ -3,9 +3,10 @@ import routes from './routes';
 import 'reflect-metadata';
 import './database/connect.ts'
 
-
+const cors = require('cors');
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 app.use(routes); // depois da definição do parser via json.
 

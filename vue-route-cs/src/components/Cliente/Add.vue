@@ -3,57 +3,64 @@
       <div v-if="!submitted">       
 
         <div class="form-group">
-            <label for="inputNomeCliente">nome:</label>
-            <input type="text" v-model="cliente.nome" class="form-control" id="inputNomeCliente">
+            <label for="inputNome">Nome:</label>
+            <input type="text" v-model="cliente.nome" class="form-control" id="inputNome">
         </div>
+
         <div class="form-group">
-            <label for="inputSenhaCliente">senha:</label>
-            <input type="password" v-model="cliente.senha" class="form-control" id="inputSenhaCliente">
-        </div>            
+            <label for="inputSenha">Senha:</label>
+            <input type="password" v-model="cliente.senha" class="form-control" id="inputSenha">
+        </div>          
+
         <div class="form-group">
-            <label for="inputCPFCliente">cpf:</label>
-            <input type="number" v-model="cliente.cpf" class="form-control" id="inputCPFCliente">
+            <label for="inputCPF">Cpf:</label>
+            <input type="text" v-model="cliente.cpf" class="form-control" id="inputCPF">
         </div>
+
         <div class="form-group">
-            <label for="inputTelefoneCliente">telefone:</label>
-            <input type="number" v-model="cliente.telefone" class="form-control" id="inputTelefoneCliente">
+            <label for="inputTelefone">Telefone:</label>
+            <input type="text" v-model="cliente.telefone" class="form-control" id="inputTelefone">
         </div>
+
         <div class="form-group">
-            <label for="inputEnderecoCliente">endereco:</label>
-            <input type="text" v-model="cliente.endereco" class="form-control" id="inputEnderecoCliente">
+            <label for="inputEndereco">Endereço:</label>
+            <input type="text" v-model="cliente.endereco" class="form-control" id="inputEndereco">
         </div>
+
         <div class="form-group">
-            <label for="inputDataNascimentoCliente">data de nascimento:</label>
-            <input type="date" v-model="cliente.data_de_nascimento" class="form-control" id="inputDataNascimentoCliente">
+            <label for="inputDataNascimento">Data de Nascimento:</label>
+            <input type="date" v-model="cliente.data_de_nascimento" class="form-control" id="inputDataNascimento">
         </div>
+
         <div class="form-group">
-            <label for="inputDataCadastroCliente">data de cadastro:</label>
-            <input type="date" v-model="cliente.data_de_cadastro" class="form-control" id="inputDataCadastroCliente">
+            <label for="inputDataCadastro">Data de Cadastro:</label>
+            <input type="date" v-model="cliente.data_de_cadastro" class="form-control" id="inputDataCadastro">
         </div>
+        
             <div class="form-group">
-            <label for="inputEmailCliente">email:</label>
-            <input type="text" v-model="cliente.email" class="form-control" id="inputEmailCliente">
+            <label for="inputEmail">Email:</label>
+            <input type="text" v-model="cliente.email" class="form-control" id="inputEmail">
         </div>  
-        </div>
-            <div class="form-group">
-            <label for="inputNumeroCartao">número do cartão:</label>
-            <input type="text" v-model="cliente.numero_cartao" class="form-control" id="inputNumeroCartao">
+
+        <div class="form-group">
+            <label for="inputSalario">Numero do Cartão:</label>
+            <input type="text" v-model="cliente.numero_do_cartao" class="form-control" id="inputSalario">
         </div>  
-        </div>
-            <div class="form-group">
-            <label for="inputBandeira">bandeira do cartão:</label>
-            <input type="text" v-model="cliente.bandeira_cartao" class="form-control" id="inputBandeira">
+
+        <div class="form-group">
+            <label for="inputCargo">Bandeira do Cartão:</label>
+            <input type="text" v-model="cliente.bandeira_do_cartao" class="form-control" id="inputCargo">
         </div>  
   
         <button @click="saveCliente" class="btn btn-success">Salvar</button>
-        <router-link to="/cliente" class="btn btn-success">Voltar</router-link>                
+        <router-link to="/listClientes" class="btn btn-success">Voltar</router-link>                
 
-      </div>
+    </div>
   
       <div v-else>
         <h4>Dados enviados com sucesso !</h4>
         <button class="btn btn-success" @click="newCliente">Novo</button>
-        <router-link to="/cliente" class="btn btn-success">Voltar</router-link>
+        <router-link to="/listClientes" class="btn btn-success">Voltar</router-link>
       </div>
     </div>
   </template>
@@ -61,7 +68,6 @@
 <script>
 
     import ClienteDataService from '../../services/ClienteDataService'
-    import PatenteDataService from '../../services/PatenteDataService'
 
     export default {
         name: "addCliente",
@@ -71,30 +77,27 @@
                                     nome: '', 
                                     senha: '',
                                     cpf: '', 
-                                    telefone: '',                                                                        
-                                    endereco: '',  
-                                    data_de_nascimento: '',
-                                    data_de_cadastro: '',
+                                    telefone: '', 
+                                    endereco: '',
+                                    data_de_nascimento: '', 
+                                    data_de_cadastro: '', 
                                     email: '',
-                                    numero_do_cartao: '',
-                                    bandeira_do_crtao: ''},
+                                    numero_do_cartao: '', 
+                                    bandeira_do_cartao: '',                                                                      
+                                },
                 submitted: false,
-                patentes: []
             }            
         },
         methods: {
 
             saveCliente(){
 
-                var jgd = jQuery.extend({}, this.cliente);//clona o this.novo_jogador e armazena na variavel jogador. dessa forma alteracoes em this.novo_jogador nao irao refletir em jogador.
-                var end = jQuery.extend({}, this.jogador.endereco);//clona o this.novo_jogador.endereco                        
-                jgd.endereco = end;                                                
+                var clt = jQuery.extend({}, this.cliente);
 
-                if (jgd.nickname.trim().length > 0 && jgd.senha.trim().length > 0 && 
-                        jgd.quantpontos > -1 && jgd.quantdinheiro > -1 && 
-                        jgd.endereco.cep.length > 0) {
-                
-                    ClienteDataService.create(jgd)
+                if (clt.nome.trim().length > 0 && clt.senha.trim().length > 0 && 
+                        clt.cpf > 0 && clt.telefone > 0) {
+            
+                    ClienteDataService.create(clt)
                     .then(response => {
                         
                         this.submitted = true;
@@ -114,30 +117,11 @@
                 this.submitted = false;
                 this.cliente = {};
             },
-            listPatentes(){
-
-                PatenteDataService.list().then(response =>{
-
-                console.log("Retorno do seviço PatenteDataService.list", response.status);
-
-                for(let j of response.data){
-
-                    this.patentes.push(j);
-                }                  
-
-                }).catch(response => {
-
-                // error callback
-                alert('Não conectou no serviço PatenteDataService.list');
-                console.log(response);
-                });               
-            }
-
         },
         mounted() {                        
-            this.listPatentes();
             
-         }
+            
+        }
 
     }
 

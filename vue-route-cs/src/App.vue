@@ -11,10 +11,16 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav">                                        
             <li class="nav-item">
-              <router-link class="nav-link" to="/jogadores">Jogador</router-link>
+              <router-link class="nav-link" to="/listFuncionarios">Funcionario</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/patentes">Patente</router-link>
+              <router-link class="nav-link" to="/listClientes">Cliente</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/listRemedios">Remedio</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/listCompras">Compra</router-link>
             </li>
             <li class="nav-item">            
               <router-link class="nav-link" to="/" v-on:click.native="logout()" replace>Logout</router-link>

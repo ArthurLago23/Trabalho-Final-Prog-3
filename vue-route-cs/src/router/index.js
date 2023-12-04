@@ -3,11 +3,27 @@ import Router from 'vue-router'
 
 import login from  '@/components/Login'
 import home from  '@/components/Home'
-import listJogadores from  '@/components/jogador/List'
-import editJogador   from  '@/components/jogador/Edit'
-import novoJogador   from  '@/components/jogador/Add'
 
-import listPatentes from  '@/components/patente/List'
+
+//Funcionarios
+import listFuncionarios from  '@/components/Funcionario/List'
+import novoFuncionario from  '@/components/Funcionario/Add'
+import editFuncionario from  '@/components/Funcionario/Edit'
+
+//Clientes
+import listClientes from  '@/components/Cliente/List'
+import novoCliente from  '@/components/Cliente/Add'
+import editCliente from  '@/components/Cliente/Edit'
+
+//Remedios
+import listRemedios from  '@/components/Remedio/List'
+import novoRemedio from  '@/components/Remedio/Add'
+import editRemedio from  '@/components/Remedio/Edit'
+
+//Compra
+import listCompras from  '@/components/Compra/List'
+import novoCompra from  '@/components/Compra/Add'
+import editCompra from  '@/components/Compra/Edit'
 
 Vue.use(Router)
 
@@ -25,24 +41,64 @@ const router = new Router({
       component: login
     },
     {
-      path: '/jogadores',
-      name: 'jogadores-list',
-      component: listJogadores    
+      path: '/listFuncionarios',
+      name: 'funcionarios-list',
+      component: listFuncionarios   
+    },    
+    {
+      path: '/addFuncionario',
+      name: "funcionario-add",
+      component: novoFuncionario
     },
     {
-      path: '/jogador/:nickname',
-      name: "jogador-edit",
-      component: editJogador
+      path: '/updatefuncionario/:cpf',
+      name: "funcionario-edit",
+      component: editFuncionario
     },
     {
-      path: '/addjogador',
-      name: "jogador-add",
-      component: novoJogador
+      path: '/listClientes',
+      name: 'clientes-list',
+      component: listClientes   
+    },    
+    {
+      path: '/addCliente',
+      name: "cliente-add",
+      component: novoCliente
     },
     {
-      path: '/patentes',
-      name: 'patentes-list',
-      component: listPatentes   
+      path: '/updatecliente/:cpf',
+      name: "cliente-edit",
+      component: editCliente
+    },
+    {
+      path: '/listRemedios',
+      name: 'remedios-list',
+      component: listRemedios   
+    },    
+    {
+      path: '/addRemedio',
+      name: "remedio-add",
+      component: novoRemedio
+    },
+    {
+      path: '/updateremedio/:id',
+      name: "remedio-edit",
+      component: editRemedio
+    },
+    {
+      path: '/listCompras',
+      name: 'compra-list',
+      component: listCompras   
+    },    
+    {
+      path: '/addCompra',
+      name: "compra-add",
+      component: novoCompra
+    },
+    {
+      path: '/updatecompra/:id',
+      name: "compra-edit",
+      component: editCompra
     }
   ]
 })
